@@ -1,18 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/main_layout"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        style="@style/title_layout">
+        <ImageView
+            android:id="@+id/title_iv"
+            style="@style/title_iv"
+            android:src="@drawable/title_image_logo"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/title1_tv"
+                style="@style/title_tv"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:text="MANDIRI"/>
+            <TextView
+                android:id="@+id/title2_tv"
+                android:layout_toEndOf="@id/title1_tv"
+                android:fontFamily="@font/nunito_sans_extrabold"
+                style="@style/title_tv"
+                android:text="  NEWS"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_top_navigation"
+        style="@style/rg_top_navigation">
+        <RadioButton
+            android:id="@+id/rb_navigation_home"
+            style="@style/rb_navigation_menu"
+            android:checked="true"
+            android:drawableStart="@drawable/navigation_selector_ic_home"
+            android:text="HOME"
+            />
+        <View
+            style="@style/view_navigation_divider" />
+        <RadioButton
+            android:id="@+id/rb_navigation_explore"
+            style="@style/rb_navigation_menu"
+            android:drawableStart="@drawable/navigation_selector_ic_explore"
+            android:text="EXPLORE"/>
+        <View
+            style="@style/view_navigation_divider" />
+        <RadioButton
+            android:id="@+id/rb_navigation_saved"
+            style="@style/rb_navigation_menu"
+            android:drawableStart="@drawable/navigation_selector_ic_saved"
+            android:text="SAVED"/>
+    </RadioGroup>
+
+
+        
+    
+</LinearLayout>

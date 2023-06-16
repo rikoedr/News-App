@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/fl_explore_fragment"
     tools:context=".view.ExploreFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <!-- TODO: EXPLORE BAR -->
+    <LinearLayout
+        style="@style/ll_home_fragment">
 
+    <HorizontalScrollView
+        style="@style/hsv_explore_bar">
+        <RadioGroup
+            android:id="@+id/rg_explore_bar"
+            style="@style/rg_explore_bar">
+            <RadioButton
+                android:id="@+id/rb_explore_tech"
+                android:checked="true"
+                style="@style/rb_explore_topics"
+                android:text="TECH"/>
+            <RadioButton
+                android:id="@+id/rb_explore_health"
+                style="@style/rb_explore_topics"
+                android:text="HEALTH"/>
+            <RadioButton
+                android:id="@+id/rb_explore_economy"
+                style="@style/rb_explore_topics"
+                android:text="ECONOMY"/>
+            <RadioButton
+                android:id="@+id/rb_explore_sport"
+                style="@style/rb_explore_topics"
+                android:text="SPORT"/>
+            <RadioButton
+                android:id="@+id/rb_explore_science"
+                style="@style/rb_explore_topics"
+                android:text="SCIENCE"/>
+        </RadioGroup>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_explore_news"
+        style="@style/rv_explore_news"/>
+    </LinearLayout>
 </FrameLayout>

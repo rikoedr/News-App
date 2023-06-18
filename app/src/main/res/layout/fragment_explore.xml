@@ -7,38 +7,53 @@
     <!-- TODO: EXPLORE BAR -->
     <LinearLayout
         style="@style/ll_home_fragment">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <LinearLayout
+                android:id="@+id/explore_loading"
+                style="@style/ll_explore_loading">
+                <View style="@style/v_explore_loading_card"/>
+                <View style="@style/v_explore_loading_card"/>
+                <View style="@style/v_explore_loading_card"/>
+                <View style="@style/v_explore_loading_card"/>
+            </LinearLayout>
 
-    <HorizontalScrollView
-        style="@style/hsv_explore_bar">
-        <RadioGroup
-            android:id="@+id/rg_explore_bar"
-            style="@style/rg_explore_bar">
-            <RadioButton
-                android:id="@+id/rb_explore_tech"
-                android:checked="true"
-                style="@style/rb_explore_topics"
-                android:text="TECH"/>
-            <RadioButton
-                android:id="@+id/rb_explore_health"
-                style="@style/rb_explore_topics"
-                android:text="HEALTH"/>
-            <RadioButton
-                android:id="@+id/rb_explore_economy"
-                style="@style/rb_explore_topics"
-                android:text="ECONOMY"/>
-            <RadioButton
-                android:id="@+id/rb_explore_sport"
-                style="@style/rb_explore_topics"
-                android:text="SPORT"/>
-            <RadioButton
-                android:id="@+id/rb_explore_science"
-                style="@style/rb_explore_topics"
-                android:text="SCIENCE"/>
-        </RadioGroup>
-    </HorizontalScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_explore_news"
+                style="@style/rv_explore_news"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_explore_news"
-        style="@style/rv_explore_news"/>
+        </RelativeLayout>
+
+        <HorizontalScrollView
+            style="@style/hsv_explore_bar">
+            <RadioGroup
+                android:id="@+id/rg_explore_bar"
+                style="@style/rg_explore_bar">
+                <RadioButton
+                    android:id="@+id/rb_explore_tech"
+                    android:checked="true"
+                    style="@style/rb_explore_topics"
+                    android:text="TECH"/>
+                <RadioButton
+                    android:id="@+id/rb_explore_health"
+                    style="@style/rb_explore_topics"
+                    android:text="HEALTH"/>
+                <RadioButton
+                    android:id="@+id/rb_explore_economy"
+                    style="@style/rb_explore_topics"
+                    android:text="ECONOMY"/>
+                <RadioButton
+                    android:id="@+id/rb_explore_sport"
+                    style="@style/rb_explore_topics"
+                    android:text="SPORT"/>
+                <RadioButton
+                    android:id="@+id/rb_explore_science"
+                    style="@style/rb_explore_topics"
+                    android:text="SCIENCE"/>
+            </RadioGroup>
+        </HorizontalScrollView>
+
     </LinearLayout>
 </FrameLayout>

@@ -81,10 +81,9 @@
     </style>
 
     <!-- TODO: Headlines News -->
-    <style name="rv_headlines">
+    <style name="rv_top_headlines">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingLeft">15dp</item>
     </style>
 
     <!-- TODO: All News -->
@@ -97,7 +96,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
-    <style name="rv_all_news">
+    <style name="rv_headlines">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingHorizontal">15dp</item>
@@ -113,6 +112,30 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- TODO: Explore News -->
+    <style name="rv_explore_news">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingHorizontal">15dp</item>
+    </style>
+
+    <!-- TODO: Explore Loading Screen -->
+    <style name="ll_explore_loading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingHorizontal">15dp</item>
+    </style>
+    <style name="v_explore_loading_card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="marginHorizontal">15dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:background">@drawable/corner_5dp</item>
+        <item name="android:backgroundTint">@color/soft_gray</item>
     </style>
 
     <!-- TODO: Explore Bar -->
@@ -140,14 +163,8 @@
         <item name="android:textSize">16dp</item>
         <item name="android:textColor">@drawable/explore_bar_selector_text</item>
     </style>
-
-    <!-- TODO: Explore Bar -->
-    <!-- TODO: Headlines News -->
-    <style name="rv_explore_news">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingHorizontal">15dp</item>
-    </style>
+    
+    
 
 
     <!-- TODO: SAVED FRAGMENT FRAGMENT STYLE SET -->

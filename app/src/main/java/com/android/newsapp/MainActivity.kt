@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun initViewPager(){
         vpContent = findViewById(R.id.vp_content)
         vpAdapter = VPAdapter(this)

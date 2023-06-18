@@ -9,16 +9,18 @@
     <LinearLayout
         style="@style/ll_home_fragment">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_headlines"
-            style="@style/rv_headlines" />
+            android:id="@+id/rv_top_headlines"
+            style="@style/rv_top_headlines"
+            android:orientation="horizontal" />
 
         <TextView
             style="@style/tv_all_news"
             android:text="ALL NEWS"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_latest_news"
-            style="@style/rv_all_news" />
+            android:id="@+id/rv_headlines"
+            style="@style/rv_headlines"
+            tools:listitem="@layout/cardview_news"/>
     </LinearLayout>
 
 </FrameLayout>

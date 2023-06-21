@@ -1,14 +1,24 @@
 package com.android.newsapp
 
+import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.android.newsapp.adapter.VPAdapter
+import com.android.newsapp.database.DBConfig
+import com.android.newsapp.database.DBController
+import com.android.newsapp.model.SavedModel
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var dbConfig: DBConfig
+    private lateinit var database: SQLiteDatabase
+    private lateinit var dbController: DBController
+
     private lateinit var navigationBar: RadioGroup
     private lateinit var rbHome: RadioButton
     private lateinit var rbExplore: RadioButton
@@ -17,12 +27,29 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vpContent: ViewPager2
     private lateinit var vpAdapter: VPAdapter
 
+    private lateinit var savedNewsList: MutableList<SavedModel>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // CREATE LOCAL DATABASE
+        dbConfig = DBConfig(this)
+        database = dbConfig.readableDatabase
+        dbController = DBController(this)
+
+        // GET SAVED NEWS DATABASE
+
+        // INIT LAYOUT ELEMENTS
         initNavigationBar()
         initViewPager()
+
+        // troubleshooting
+        val logo = findViewById<ImageView>(R.id.title_iv)
+        logo.setOnClickListener{
+            val intent = Intent(this, NewsViewerActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initNavigationBar(){

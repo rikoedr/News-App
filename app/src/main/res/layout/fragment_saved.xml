@@ -3,11 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SavedFragment">
+    tools:context=".view.SavedFragment"
+
+    android:background="@drawable/home_bg_white">
 
     <!-- TODO: Update blank fragment layout -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_saved_news"
-        style="@style/rv_saved_news"/>
+    <LinearLayout
+        android:id="@+id/ll_saved_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_saved_news"
+            style="@style/rv_saved_news"/>
+    </LinearLayout>
 
 </FrameLayout>

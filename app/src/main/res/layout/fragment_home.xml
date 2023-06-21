@@ -7,6 +7,8 @@
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
+        android:id="@+id/ll_home"
+        android:background="@drawable/home_background_loading"
         style="@style/ll_home_fragment">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_top_headlines"
@@ -14,7 +16,9 @@
             android:orientation="horizontal" />
 
         <TextView
+            android:id="@+id/tv_home_news_header"
             style="@style/tv_all_news"
+            android:visibility="gone"
             android:text="ALL NEWS"/>
 
         <androidx.recyclerview.widget.RecyclerView

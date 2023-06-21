@@ -117,7 +117,8 @@
     <!-- TODO: Explore News -->
     <style name="rv_explore_news">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:background">@color/white</item>
         <item name="android:paddingHorizontal">15dp</item>
     </style>
@@ -143,7 +144,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginHorizontal">15dp</item>
-        <item name="android:layout_marginVertical">5dp</item>
+        <item name="android:layout_marginVertical">10dp</item>
         <item name="android:scrollbars">none</item>
         <item name="android:background">@drawable/corner_10dp</item>
         <item name="android:tint">@color/soft_blue</item>
@@ -152,13 +153,14 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:paddingVertical">10dp</item>
         <item name="android:orientation">horizontal</item>
     </style>
     <style name="rb_explore_topics">
         <item name="android:button">@null</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingHorizontal">10dp</item>
         <item name="fontFamily">@font/nunito_sans_extrabold</item>
         <item name="android:textSize">16dp</item>
         <item name="android:textColor">@drawable/explore_bar_selector_text</item>
@@ -174,6 +176,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingHorizontal">15dp</item>
     </style>
+
+    <!-- TODO: NEWS VIEWER -->
+    <style name="NewsViewerDialog" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
 
 
 

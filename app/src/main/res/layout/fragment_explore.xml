@@ -7,24 +7,10 @@
     <!-- TODO: EXPLORE BAR -->
     <LinearLayout
         style="@style/ll_home_fragment">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <LinearLayout
-                android:id="@+id/explore_loading"
-                style="@style/ll_explore_loading">
-                <View style="@style/v_explore_loading_card"/>
-                <View style="@style/v_explore_loading_card"/>
-                <View style="@style/v_explore_loading_card"/>
-                <View style="@style/v_explore_loading_card"/>
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_explore_news"
-                style="@style/rv_explore_news"/>
-
-        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_explore_news"
+            android:background="@drawable/explore_background_loading"
+            style="@style/rv_explore_news"/>
 
         <HorizontalScrollView
             style="@style/hsv_explore_bar">
@@ -54,6 +40,5 @@
                     android:text="SCIENCE"/>
             </RadioGroup>
         </HorizontalScrollView>
-
     </LinearLayout>
 </FrameLayout>

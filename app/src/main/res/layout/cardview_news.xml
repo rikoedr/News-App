@@ -45,6 +45,13 @@
                 android:textColor="@color/dark_gray"
                 android:textSize="15sp"
                 android:text="Secret Invasion brings the MCU down to Earth with a good..."/>
+
+            <TextView
+                android:id="@+id/tv_headlines_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
         </LinearLayout>
 
     </LinearLayout>

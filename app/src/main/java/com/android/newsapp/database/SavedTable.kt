@@ -9,7 +9,7 @@ object SavedTable {
     const val URL = "url"
     const val PUBLISHED_AT = "publishedAt"
 
-    // DB STRING COLLECTION
+    // SAVED TABLE STRING COLLECTIONS
     const val createTableQuery = "CREATE TABLE $TABLE_NAME (" +
             "$ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "$SOURCE TEXT NOT NULL, " +
@@ -18,13 +18,10 @@ object SavedTable {
             "$PUBLISHED_AT TEXT NOT NULL)"
 
     const val selectQuery = "SELECT * FROM $TABLE_NAME"
-
+    fun deleteQuery(url: String): String = "DELETE FROM $TABLE_NAME WHERE $URL = '$url'"
+    fun searchQuery(url: String): String = "SELECT * FROM $TABLE_NAME WHERE $URL = '$url'"
     fun insertQuery(source: String, title: String, publishedAt: String, url: String): String{
         return "INSERT INTO $TABLE_NAME ($SOURCE, $TITLE, $URL, $PUBLISHED_AT) " +
                 "VALUES ('$source', '$title', '$url', '$publishedAt')"
     }
-
-    fun deleteQuery(url: String): String = "DELETE FROM $TABLE_NAME WHERE $URL = '$url'"
-
-    fun searchQuery(url: String): String = "SELECT * FROM $TABLE_NAME WHERE $URL = '$url'"
 }

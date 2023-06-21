@@ -1,6 +1,5 @@
 package com.android.newsapp
 
-import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.ToggleButton
 import com.android.newsapp.database.DBController
+import com.android.newsapp.util.TimeUtil
 
 class NewsViewerActivity : AppCompatActivity() {
     private lateinit var source: String
@@ -23,10 +23,9 @@ class NewsViewerActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     private lateinit var progressBar: ProgressBar
 
-    private lateinit var backButton: Button
-    private lateinit var saveButton: ToggleButton
+    private lateinit var btBack: Button
+    private lateinit var btSave: ToggleButton
     private lateinit var tvTopSource: TextView
-
 
     private lateinit var dbController: DBController
 
@@ -34,84 +33,74 @@ class NewsViewerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_viewer)
 
-        // INIT DBCONTROLLER
-        dbController = DBController(this)
-
-        // CATCH ARTICLE DATA
+        // CATCH ARTICLE DATA FROM MAIN ACTIVITY
         source = intent.getStringExtra("articleSource")!!
         title = intent.getStringExtra("articleTitle")!!
         publishedAt = intent.getStringExtra("articlePublishedAt")!!
         urlToOpen = intent.getStringExtra("urlToOpen")!!
 
+        // LAYOUT ELEMENTS SET-UP
+        setupTopBar()
+        setupWebView()
 
-        // SETUP TOP BAR LAYOUT
-        backButton = findViewById(R.id.bt_news_viewer_back)
-        saveButton = findViewById(R.id.tb_news_viewer_save)
-        tvTopSource = findViewById(R.id.tv_news_viewer_source)
-        topBackButton()
-        topSaveButton()
-        tvTopSource.text = source
+    }
+    override fun onBackPressed() {
+        finish()
+    }
 
-        // SETUP WEB VIEW
+    private fun setupWebView(){
+        // Initialize webview client
         webView = findViewById(R.id.wv_news_viewer)
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
-
-        // PROGRESS BAR EVENT
         progressBar = findViewById(R.id.pb_loading_web)
-        progressBarEvent()
 
-        // LOAD URL
-        webView.loadUrl(urlToOpen)
-    }
-
-    override fun onBackPressed() {
-        // DESTROY ACTIVITY WHEN USER PRESSED BACK BUTTON
-        finish()
-    }
-
-    private fun progressBarEvent(){
+        // Progress bar event
         webView.webViewClient = object: WebViewClient(){
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 progressBar.visibility = View.GONE
                 super.onPageStarted(view, url, favicon)
             }
         }
+        // Load articles url
+        webView.loadUrl(urlToOpen)
     }
 
-    private fun topBackButton(){
-        backButton.setOnClickListener{
+    private fun setupTopBar(){
+        // Initialize top bar elements
+        btBack = findViewById(R.id.bt_news_viewer_back)
+        btSave = findViewById(R.id.tb_news_viewer_save)
+        tvTopSource = findViewById(R.id.tv_news_viewer_source)
+        tvTopSource.text = source
+
+        // Back button event handling
+        btBack.setOnClickListener{
             finish()
         }
+        // Top save button event handling
+        setupSaveButton()
     }
 
-    private fun topSaveButton(){
-        // CHECK ARTICLE SAVE STATUS
-        when(dbController.isArticleSaved(urlToOpen)){
-            true -> {
-                dbController.closeDatabase()
-                saveButton.isChecked = true
-            }
-            else -> {
-                dbController.closeDatabase()
-                saveButton.isChecked = false
-            }
+    private fun setupSaveButton(){
+        dbController = DBController(this) // Connect to database controller
+        // Check article save status
+        if (dbController.isArticleSaved(urlToOpen)){
+            dbController.closeDatabase()
+            btSave.isChecked = true
+        } else {
+            dbController.closeDatabase()
+            btSave.isChecked = false
         }
-
-        // SAVE BUTTON EVENT ON CLICK
-        val isSaveButtonChecked = saveButton.isChecked
-        saveButton.setOnCheckedChangeListener { buttonView, isChecked ->
-            when(isChecked){
-                true -> {
-                    dbController.insertArticles(source, title, publishedAt, urlToOpen)
-                    Toast.makeText(this, "Articles Saved", Toast.LENGTH_SHORT).show()
-                }
-                else -> {
-                    dbController.deleteArticles(urlToOpen)
-                    Toast.makeText(this, "Articles Unsaved", Toast.LENGTH_SHORT).show()
-                }
-            }
+        // Save button event handling
+        btSave.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                dbController.insertArticles(source, title, TimeUtil.Formatter(publishedAt), urlToOpen)
+                Toast.makeText(this, "Articles Saved", Toast.LENGTH_SHORT).show()
+            } else {
+                dbController.deleteArticles(urlToOpen)
+                Toast.makeText(this, "Articles Unsaved", Toast.LENGTH_SHORT).show() }
         }
     }
+
 }

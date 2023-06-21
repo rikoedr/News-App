@@ -1,43 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/fl_explore_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".view.ExploreFragment">
-
-    <!-- TODO: EXPLORE BAR -->
     <LinearLayout
-        style="@style/ll_home_fragment">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_explore_news"
-            android:background="@drawable/explore_background_loading"
-            style="@style/rv_explore_news"/>
-
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="15dp"
+            android:background="@drawable/explore_background_loading" />
         <HorizontalScrollView
-            style="@style/hsv_explore_bar">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp"
+            android:scrollbars="none"
+            android:background="@drawable/corner_10dp">
             <RadioGroup
                 android:id="@+id/rg_explore_bar"
-                style="@style/rg_explore_bar">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="10dp">
                 <RadioButton
-                    android:id="@+id/rb_explore_tech"
                     android:checked="true"
-                    style="@style/rb_explore_topics"
-                    android:text="TECH"/>
+                    style="@style/reusable_explore_rb"
+                    android:text="@string/tech"/>
                 <RadioButton
                     android:id="@+id/rb_explore_health"
-                    style="@style/rb_explore_topics"
-                    android:text="HEALTH"/>
+                    style="@style/reusable_explore_rb"
+                    android:text="@string/health"/>
                 <RadioButton
                     android:id="@+id/rb_explore_economy"
-                    style="@style/rb_explore_topics"
-                    android:text="ECONOMY"/>
+                    style="@style/reusable_explore_rb"
+                    android:text="@string/economy"/>
                 <RadioButton
                     android:id="@+id/rb_explore_sport"
-                    style="@style/rb_explore_topics"
-                    android:text="SPORT"/>
+                    style="@style/reusable_explore_rb"
+                    android:text="@string/sport"/>
                 <RadioButton
                     android:id="@+id/rb_explore_science"
-                    style="@style/rb_explore_topics"
-                    android:text="SCIENCE"/>
+                    style="@style/reusable_explore_rb"
+                    android:text="@string/science"/>
             </RadioGroup>
         </HorizontalScrollView>
     </LinearLayout>

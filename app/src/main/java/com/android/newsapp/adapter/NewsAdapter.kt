@@ -54,12 +54,12 @@ class NewsAdapter(private var articles: MutableList<Articles>, private val conte
                 val publishedAt = TimeUtil.Formatter(articles.publishedAt)
                 val title = articles.title
 
-                // SET CARD SOURCE & TITLE
+                // Set card title and source text
                 headlinesSource.text = "$source • $publishedAt"
                 headlinesTitle.justificationMode
                 headlinesTitle.text = if (title.length > 80) "${title.substring(0, 80)}..." else title
 
-                // SET CARD THUMBNAIL IMAGE
+                // Set card thumbnail image
                 Glide.with(this)
                     .load(urlToImage)
                     .error(R.drawable.image_not_available)

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- TODO: Reusable Style For Radio Button & Divider -->
+    <style name="reusable_navbar_rb">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/navigation_selector_bg_button</item>
+        <item name="fontFamily">@font/nunito_sans_extrabold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@drawable/navigation_selector_text</item>
+    </style>
+    <style name="reusable_navbar_divider">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">5dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- TODO: Reusable Style For Title TextView -->
+    <style name="reusable_title_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- TODO: Reusable Style For Explore Bar Radio Button -->
+    <style name="reusable_explore_rb">
+        <item name="android:button">@null</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingHorizontal">10dp</item>
+        <item name="fontFamily">@font/nunito_sans_extrabold</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@drawable/explore_bar_selector_text</item>
+    </style>
+
+
+</resources>

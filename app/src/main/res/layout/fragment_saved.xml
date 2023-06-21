@@ -4,18 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.SavedFragment"
-
     android:background="@drawable/home_bg_white">
 
-    <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <!-- LAYOUT FOR DISPLAYING SAVED NEWS LIST -->
+    <RelativeLayout
         android:id="@+id/ll_saved_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_saved_news"
-            style="@style/rv_saved_news"/>
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="15dp"/>
+    </RelativeLayout>
 
 </FrameLayout>

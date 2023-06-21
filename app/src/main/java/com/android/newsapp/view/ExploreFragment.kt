@@ -16,7 +16,6 @@ import com.android.newsapp.R
 import com.android.newsapp.adapter.NewsAdapter
 import com.android.newsapp.api.ContractAPI
 import com.android.newsapp.api.NewsClient
-import com.android.newsapp.model.Articles
 import com.android.newsapp.model.NewsModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,10 +24,11 @@ import retrofit2.Response
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 class ExploreFragment : Fragment() {
-    private var rvExploreNews: RecyclerView? = null
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var fragmentContext: Context
+    private var rvExploreNews: RecyclerView? = null
+
     private var articlesPage = 1
 
     private var param1: String? = null
@@ -63,7 +63,7 @@ class ExploreFragment : Fragment() {
         getExploreNews(true, ContractAPI.TECH, 1)
 
         // EXPLORE BAR
-        exploreBar()
+        setupExploreBar()
 
         // INFINITE SCROLLING
         rvExploreNews?.addOnScrollListener(object: RecyclerView.OnScrollListener(){
@@ -72,6 +72,7 @@ class ExploreFragment : Fragment() {
                 val visibleItemsCount = linearLayoutManager.childCount
                 val pastVisibleItems = linearLayoutManager.findFirstCompletelyVisibleItemPosition()
 
+                /*
                 Log.i("check scroll", "Visible Items : $visibleItemsCount || Past Visible Items : $pastVisibleItems")
                 Log.i("check scroll", "All Item View : ${visibleItemsCount+pastVisibleItems} || Adapter Item Count : ${newsAdapter.itemCount}")
 
@@ -79,7 +80,7 @@ class ExploreFragment : Fragment() {
                     if(articlesPage * 10 == newsAdapter.itemCount){
                         Log.i("check scroll", "UJUNG BOS!!")
                     }
-                }
+                }*/
 
                 super.onScrolled(recyclerView, dx, dy)
             }
@@ -92,7 +93,7 @@ class ExploreFragment : Fragment() {
         NewsClient.exploreAPI.getExploreNews(category, ContractAPI.API_KEY, ContractAPI.PAGE_SIZE_EXPLORE, page).enqueue(object : Callback<NewsModel>{
             override fun onResponse(call: Call<NewsModel>, response: Response<NewsModel>) {
 
-
+                /*
                 if(isNewLoad){
                     val articlesList = response.body()?.articles as MutableList<Articles>
                     newsAdapter = NewsAdapter(articlesList, fragmentContext)
@@ -107,6 +108,8 @@ class ExploreFragment : Fragment() {
 
                 // Setting Up News Viewer
                 newsViewer()
+                
+                 */
 
             }
 
@@ -115,7 +118,7 @@ class ExploreFragment : Fragment() {
         })
     }
 
-    private fun exploreBar(){
+    private fun setupExploreBar(){
         val rgExplore = view?.findViewById<RadioGroup>(R.id.rg_explore_bar)
 
         rgExplore?.setOnCheckedChangeListener { group, checkedId ->
@@ -129,7 +132,7 @@ class ExploreFragment : Fragment() {
         }
     }
 
-    private fun newsViewer(){
+    private fun setupNewsViewer(){
         newsAdapter.setOnItemClickListener(object : NewsAdapter.onNewsItemClickListener{
             override fun onNewsItemClickListener(position: Int, source: String, title: String, publishedAt: String, urlToOpen: String) {
                 Log.i("check ini", "$position + $urlToOpen")

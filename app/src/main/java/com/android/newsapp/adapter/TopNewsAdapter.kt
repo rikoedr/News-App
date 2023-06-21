@@ -51,11 +51,11 @@ class TopNewsAdapter(private val articles: List<Articles>, private val context: 
                 val publishedAt = TimeUtil.Formatter(articles.publishedAt)
                 val title = articles.title
 
-                // SET CARD SOURCE & TITLE
+                // Set card source and title text
                 topHeadlinesSource.text = "$source • $publishedAt"
                 topHeadlinesTitle.text = title //if (title.length > 34) "${title.substring(0, 34)}..." else "$title..."
 
-                // SET CARD THUMBNAIL IMAGE
+                // Set card thumbnail image
                 Glide.with(this)
                     .load(urlToImage)
                     .error(R.drawable.image_not_available)

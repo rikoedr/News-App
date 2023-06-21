@@ -10,7 +10,6 @@ class DBController(context: Context) {
 
     fun openDatabase(){ database = dbConfig.readableDatabase }
     fun closeDatabase(){ database.close() }
-
     fun getSavedNews(): MutableList<SavedModel>{
         openDatabase()
         val savedNewsList: MutableList<SavedModel> = mutableListOf()
@@ -32,19 +31,16 @@ class DBController(context: Context) {
         closeDatabase()
         return savedNewsList
     }
-
     fun isArticleSaved(url: String): Boolean{
         openDatabase()
         val savedCursor = database.rawQuery(SavedTable.searchQuery(url), null)
         return savedCursor.moveToFirst()
     }
-
     fun insertArticles(source: String, title: String, publishedAt: String, url: String){
         openDatabase()
         database.execSQL(SavedTable.insertQuery(source, title, publishedAt, url))
         closeDatabase()
     }
-
     fun deleteArticles(url: String){
         openDatabase()
         database.execSQL(SavedTable.deleteQuery(url))

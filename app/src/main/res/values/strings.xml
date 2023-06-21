@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">News App</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="news">NEWS</string>
+    <string name="mandiri">MANDIRI</string>
+    <string name="home">HOME</string>
+    <string name="explore">EXPLORE</string>
+    <string name="saved">SAVED</string>
+    <string name="quick_view">QUICK VIEW</string>
+    <string name="save">SAVE</string>
+    <string name="tech">TECH</string>
+    <string name="health">HEALTH</string>
+    <string name="economy">ECONOMY</string>
+    <string name="sport">SPORT</string>
+    <string name="science">SCIENCE</string>
+    <string name="all_news">ALL NEWS</string>
 </resources>

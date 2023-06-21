@@ -5,12 +5,11 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ExploreAPI {
-    @GET("everything")
-    fun getExploreNews(
-        @Query("q") q:String,
+interface NewsAPI {
+    @GET("top-headlines")
+    fun getHeadlines(
+        @Query("country") country: String,
         @Query("apiKey") apiKey: String,
-        @Query("pageSize") pageSize: Int,
         @Query("page") page: Int
-    ): Call<NewsModel>
+    ) : Call<NewsModel>
 }

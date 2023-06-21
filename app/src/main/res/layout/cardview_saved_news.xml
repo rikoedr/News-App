@@ -4,40 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="15dp"
-    app:cardBackgroundColor="@color/light_gray"
+    app:cardBackgroundColor="@color/light_gray_blue"
     app:cardElevation="0dp"
-    app:cardCornerRadius="10dp"
-    android:id="@+id/cv_saved_news">
-    <LinearLayout
+    app:cardCornerRadius="10dp">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="10dp">
-            <TextView
-                android:id="@+id/tv_saved_news_source"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/cv_allnews_ic_source"
-                android:drawableTint="@color/soft_black"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/nunito_sans_bold"
-                android:textColor="@color/soft_black"
-                android:textSize="12sp"
-                android:text="The Verge • 12 Jan 2023"/>
-            <TextView
-                android:id="@+id/tv_saved_news_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_sans_bold"
-                android:textColor="@color/soft_black"
-                android:textSize="16sp"
-                android:text="Secret Invasion brings the MCU down to Earth with a good..."/>
-
+        <TextView
+            android:id="@+id/tv_saved_news_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/cv_allnews_ic_source"
+            android:drawableTint="@color/soft_black"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:textColor="@color/soft_black"
+            android:textSize="12sp"
+            android:text="The Verge • 12 Jan 2023"/>
+        <TextView
+            android:id="@+id/tv_saved_news_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_saved_news_source"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:textColor="@color/soft_black"
+            android:textSize="16sp"
+            android:text="Secret Invasion brings the MCU down to Earth with a good..."/>
         <TextView
             android:id="@+id/tv_saved_news_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

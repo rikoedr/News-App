@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white">
         <Button
             android:id="@+id/bt_news_viewer_back"
             style="?android:attr/borderlessButtonStyle"
@@ -16,58 +10,50 @@
             android:layout_width="46dp"
             android:layout_height="40dp"
             android:layout_marginStart="15dp"
-            android:layout_centerVertical="true"
+            android:layout_marginVertical="5dp"
             android:layout_alignParentStart="true"
-            android:background="@color/white"
-            />
+            android:background="@color/white" />
         <TextView
             android:id="@+id/tv_news_viewer_source"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
+            android:layout_height="40dp"
+            android:layout_marginVertical="5dp"
+            android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/bt_news_viewer_back"
+            android:gravity="center_vertical"
             android:fontFamily="@font/nunito_sans_extrabold"
             android:textSize="20sp"
             android:textColor="@color/dark_blue_gray"
-            android:text="QUICK VIEW"/>
+            android:text="@string/quick_view"/>
         <ToggleButton
             android:id="@+id/tb_news_viewer_save"
-            android:layout_width="120dp"
             style="?android:attr/borderlessButtonStyle"
+            android:layout_width="100dp"
             android:layout_height="40dp"
-            android:paddingEnd="15dp"
-            android:layout_centerVertical="true"
+            android:layout_marginVertical="5dp"
+            android:layout_marginEnd="15dp"
             android:layout_alignParentEnd="true"
             android:background="@color/white"
-            android:textOff="SAVE"
-            android:textOn="SAVED"
+            android:textOff="@string/save"
+            android:textOn="@string/saved"
             android:button="@drawable/news_viewer_selector_ic_bookmark"
             android:fontFamily="@font/nunito_sans_extrabold"
-            android:textColor="@color/dark_blue_gray"
+            android:textColor="@drawable/news_viewer_selector_tv_bookmark"
             android:textSize="18sp" />
         <View
+            android:id="@+id/divider_news_viewer"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/bt_news_viewer_back"
             android:background="@color/light_gray"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
         <WebView
             android:id="@+id/wv_news_viewer"
+            android:layout_below="@id/divider_news_viewer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
         <ProgressBar
             android:id="@+id/pb_loading_web"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            />
-    </RelativeLayout>
-
-</LinearLayout>
+            android:layout_centerInParent="true" />
+</RelativeLayout>

@@ -9,11 +9,10 @@ import com.android.newsapp.view.HomeFragment
 import com.android.newsapp.view.SavedFragment
 
 class VPAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity){
-    private val context = fragmentActivity
     override fun createFragment(position: Int): Fragment {
         return when(position){
             1 -> ExploreFragment()
-            2 -> SavedFragment(context)
+            2 -> SavedFragment()
             else -> HomeFragment()
         }
     }

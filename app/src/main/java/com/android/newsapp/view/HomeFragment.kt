@@ -31,10 +31,10 @@ class HomeFragment : Fragment() {
     private lateinit var homeContentLayout: LinearLayout
     private lateinit var tvHomeHeader: TextView
 
-    private var rvHeadlines: RecyclerView? = null
-    private lateinit var headlinesAdapter: NewsAdapter
-    private var rvTopHeadlines: RecyclerView? = null
-    private lateinit var topHeadlinesAdapter: TopNewsAdapter
+    private var rvAllNews: RecyclerView? = null
+    private var rvTopNews: RecyclerView? = null
+    private lateinit var newsAdapter: NewsAdapter
+    private lateinit var topNewsAdapter: TopNewsAdapter
 
     private lateinit var fragmentContext: Context
 
@@ -75,30 +75,60 @@ class HomeFragment : Fragment() {
         initHeadlinesRV()
 
         // GET HEADLINES NEWS DATA
-        getHeadlinesNews()
+        setupNews()
     }
 
-    private fun setHomeLoadingScreen(status: Boolean){
-        when(status){
-            true -> {
-                homeContentLayout.setBackgroundResource(R.drawable.home_background_loading)
-                tvHomeHeader.visibility = View.GONE
-            }
-            else -> {
-                homeContentLayout.setBackgroundResource(R.drawable.home_bg_white)
-                tvHomeHeader.visibility = View.VISIBLE
-            }
-        }
-    }
+    // METHOD TO INITIALIZE RECYCLERVIEW
     private fun initHeadlinesRV(){
-        rvTopHeadlines = view?.findViewById(R.id.rv_top_headlines)
-        rvTopHeadlines?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rvHeadlines = view?.findViewById(R.id.rv_headlines)
-        rvHeadlines?.layoutManager = LinearLayoutManager(context)
+        rvTopNews = view?.findViewById(R.id.rv_top_news)
+        rvTopNews?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvAllNews = view?.findViewById(R.id.rv_all_news)
+        rvAllNews?.layoutManager = LinearLayoutManager(context)
     }
 
-    private fun headlinesNewsViewer(){
-        headlinesAdapter.setOnItemClickListener(object : NewsAdapter.onNewsItemClickListener{
+    // METHOD TO COLLECT NEWS DATA FROM API AND SET TO ADAPTERS
+    private fun setupNews(){
+        NewsClient.newsAPI.getHeadlines(ContractAPI.COUNTRY, ContractAPI.API_KEY, 1).enqueue(object : Callback<NewsModel>{
+            override fun onResponse(call: Call<NewsModel>, response: Response<NewsModel>) {
+                // Troubleshooting
+                Log.i("News API", "Status : API Connected \n Response : ${response.code()} ")
+
+                // Collect Data From API
+                val headlinesModel: NewsModel? = response.body()
+                if(headlinesModel != null){
+                    if(headlinesModel.articles.isNotEmpty()){
+                        // Change background
+                        setFragmentBackground(false)
+
+                        // Set Top Headlines Article
+                        val topHeadlinesArticles = if (headlinesModel.articles.size > 5) headlinesModel.articles.take(5) else headlinesModel.articles
+                        topNewsAdapter = TopNewsAdapter(topHeadlinesArticles, context)
+                        rvTopNews?.adapter = topNewsAdapter
+
+                        // Set Headlines Article
+                        val headlinesArticles = headlinesModel.articles.subList(5, headlinesModel.articles.size)
+                        newsAdapter = NewsAdapter(headlinesArticles as MutableList<Articles>, context)
+                        rvAllNews?.adapter = newsAdapter
+
+                        // SETUP NEWS VIEWER
+                        setupNewsViewer()
+
+                        // Troubleshooting
+                        Log.i("Home Fragment", "HOME FRAGMENT : ${headlinesModel.articles}")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<NewsModel>, t: Throwable) {
+
+            }
+        })
+    }
+
+    // METHOD TO INITIALIZE NEWSVIEWER CLIENT
+    private fun setupNewsViewer(){
+        // NewsViewer Client for All News List
+        newsAdapter.setOnItemClickListener(object : NewsAdapter.onNewsItemClickListener{
             override fun onNewsItemClickListener(position: Int, source: String, title: String, publishedAt: String, urlToOpen: String) {
                 Log.i("check ini", "$position + $urlToOpen")
                 val intent = Intent(fragmentContext, NewsViewerActivity::class.java)
@@ -108,12 +138,9 @@ class HomeFragment : Fragment() {
                 intent.putExtra("urlToOpen", urlToOpen)
                 startActivity(intent)
             }
-
         })
-    }
-
-    private fun topHeadlinesNewsViewer(){
-        topHeadlinesAdapter.setOnTopNewsItemClickListener(object : TopNewsAdapter.onTopNewsItemClickListener{
+        // NewsViewer Client for Top News List
+        topNewsAdapter.setOnTopNewsItemClickListener(object : TopNewsAdapter.onTopNewsItemClickListener{
             override fun onTopNewsItemClickListener(position: Int, source: String, title: String, publishedAt: String, urlToOpen: String) {
                 Log.i("check ini", "$position + $urlToOpen")
                 val intent = Intent(fragmentContext, NewsViewerActivity::class.java)
@@ -126,42 +153,15 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun getHeadlinesNews(){
-        NewsClient.headlinesAPI.getHeadlines(ContractAPI.COUNTRY, ContractAPI.API_KEY, 1).enqueue(object : Callback<NewsModel>{
-            override fun onResponse(call: Call<NewsModel>, response: Response<NewsModel>) {
-                // Troubleshooting
-                Log.i("News API", "Status : API Connected \n Response : ${response.code()} ")
-
-                // Collect Data From API
-                val headlinesModel: NewsModel? = response.body()
-                if(headlinesModel != null){
-                    if(headlinesModel.articles.isNotEmpty()){
-                        // Change background
-                        setHomeLoadingScreen(false)
-
-                        // Set Top Headlines Article
-                        val topHeadlinesArticles = if (headlinesModel.articles.size > 5) headlinesModel.articles.take(5) else headlinesModel.articles
-                        topHeadlinesAdapter = TopNewsAdapter(topHeadlinesArticles, context)
-                        rvTopHeadlines?.adapter = topHeadlinesAdapter
-
-                        // Set Headlines Article
-                        val headlinesArticles = headlinesModel.articles.subList(5, headlinesModel.articles.size)
-                        headlinesAdapter = NewsAdapter(headlinesArticles as MutableList<Articles>, context)
-                        rvHeadlines?.adapter = headlinesAdapter
-
-                        // SETUP NEWS VIEWER
-                        headlinesNewsViewer()
-                        topHeadlinesNewsViewer()
-
-                        // Troubleshooting
-                        Log.i("Home Fragment", "HOME FRAGMENT : ${headlinesModel.articles}")
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<NewsModel>, t: Throwable) {
-
-            }
-        })
+    // METHOD TO SET FRAGMENT BACKGROUND
+    private fun setFragmentBackground(status: Boolean){
+        if (status) {
+            homeContentLayout.setBackgroundResource(R.drawable.home_background_loading)
+            tvHomeHeader.visibility = View.GONE
+        }
+        else {
+            homeContentLayout.setBackgroundResource(R.drawable.home_bg_white)
+            tvHomeHeader.visibility = View.VISIBLE
+        }
     }
 }

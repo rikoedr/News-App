@@ -26,11 +26,17 @@
             android:textColor="@color/black"
             android:visibility="gone"
             android:text="@string/all_news"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_all_news"
+        <LinearLayout
+            android:id="@+id/ll_all_news"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="15dp"
-            tools:listitem="@layout/cardview_news"/>
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_all_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="15dp"
+                tools:listitem="@layout/cardview_news"/>
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

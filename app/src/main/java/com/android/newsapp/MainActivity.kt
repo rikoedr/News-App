@@ -2,14 +2,18 @@ package com.android.newsapp
 
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDialogFragment
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.android.newsapp.adapter.VPAdapter
 import com.android.newsapp.database.DBConfig
 import com.android.newsapp.database.DBController
+import com.android.newsapp.view.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var dbConfig: DBConfig
@@ -23,6 +27,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var vpContent: ViewPager2
     private lateinit var vpAdapter: VPAdapter
+
+    private lateinit var homeFragment: HomeFragment
+    private lateinit var headlinesRV: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

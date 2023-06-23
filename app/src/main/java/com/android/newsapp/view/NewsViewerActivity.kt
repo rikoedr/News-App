@@ -1,4 +1,4 @@
-package com.android.newsapp
+package com.android.newsapp.view
 
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.ToggleButton
+import com.android.newsapp.R
 import com.android.newsapp.database.DBController
 import com.android.newsapp.util.TimeUtil
 

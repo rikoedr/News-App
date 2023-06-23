@@ -29,7 +29,7 @@
                 android:orientation="horizontal"
                 android:paddingVertical="10dp">
                 <RadioButton
-                    android:checked="true"
+                    android:id="@+id/rb_explore_tech"
                     style="@style/reusable_explore_rb"
                     android:text="@string/tech"/>
                 <RadioButton

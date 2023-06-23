@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.newsapp.R
-import com.android.newsapp.NewsViewerActivity
 import com.android.newsapp.adapter.SavedAdapter
 import com.android.newsapp.database.DBController
 import com.android.newsapp.model.SavedModel
@@ -23,7 +23,7 @@ class SavedFragment : Fragment() {
     private var rvSaved: RecyclerView? = null
     private lateinit var savedAdapter: SavedAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var savedFragmentLayout: RelativeLayout
+    private lateinit var savedFragmentLayout: LinearLayout
     private lateinit var fragmentContext: Context
 
     private lateinit var dbController: DBController

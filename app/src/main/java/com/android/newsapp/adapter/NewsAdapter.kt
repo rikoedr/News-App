@@ -80,7 +80,6 @@ class NewsAdapter(private var articles: MutableList<Articles>, private val conte
             articles[position].url)
 
         holder.bind(articles[position])
-        Log.i("News API", "Adapter Works!")
     }
 
     override fun getItemCount(): Int = articles.size

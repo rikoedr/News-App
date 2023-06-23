@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface EverythingAPI {
     @GET("everything")
-    fun getExploreNews(
+    fun getEverythingNews(
         @Query("q") q:String,
         @Query("apiKey") apiKey: String,
         @Query("pageSize") pageSize: Int,

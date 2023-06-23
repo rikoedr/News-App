@@ -7,7 +7,7 @@
     android:background="@drawable/home_bg_white">
 
     <!-- LAYOUT FOR DISPLAYING SAVED NEWS LIST -->
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/ll_saved_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="15dp"/>
-    </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>

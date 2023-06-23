@@ -1,5 +1,5 @@
 # ABOUT THE PROJECT
-News App merupakan aplikasi pembaca berita, aplikasi ini dapat menampilkan berita dari beragam kategori serta aplikasi dengan kategori headlines.
+News App merupakan aplikasi pembaca berita, aplikasi ini dapat menampilkan berita dari beragam kategori.
 Aplikasi ini dibuat untuk memenuhi tugas akhir dalam kegiatan Virtual Internship Experience Rakamin Academy.
 
 ![alt text](https://github.com/rikoedr/Belajar-API-Sederhana/blob/master/news-app.jpg?raw=true)
